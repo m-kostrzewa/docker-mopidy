@@ -50,5 +50,7 @@ VOLUME ["/var/lib/mopidy/local", "/var/lib/mopidy/media"]
 
 EXPOSE 6600 6680
 
+HEALTHCHECK --interval=15s --retries=2 --timeout=3s CMD curl -f http://localhost/ || exit 1
+
 ENTRYPOINT ["/usr/bin/dumb-init", "/entrypoint.sh"]
 CMD ["/usr/bin/mopidy"]
